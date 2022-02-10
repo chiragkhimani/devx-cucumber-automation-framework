@@ -1,6 +1,7 @@
 package automation.pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,8 +19,7 @@ public class HomePage extends BasePage{
     @FindBy(id = "logout_sidebar_link")
     WebElement logoutLink;
 
-    @FindBy(xpath = "//div[text()='Sauce Labs Backpack']")
-    WebElement itemLink;
+    String XPATH_ITEM_LINK = "//div[text()='%s']";
 
     public void verifyPage(){
         Assert.assertTrue("Logo is missing from homepage", homePageLogo.isDisplayed());
@@ -34,7 +34,12 @@ public class HomePage extends BasePage{
         logoutLink.click();
     }
 
-    public void clickOnItem() {
+    // itemName - We're getting from feature file
+    public void clickOnItem(String itemName) {
+        String loc = String.format(XPATH_ITEM_LINK, itemName);
+        WebElement itemLink = driver.findElement(By.xpath(loc));
         itemLink.click();
     }
+
+
 }

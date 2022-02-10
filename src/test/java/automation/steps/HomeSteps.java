@@ -13,8 +13,8 @@ public class HomeSteps {
         homePage.verifyPage();
     }
 
-    @When("user click on any item")
-    public void userClickOnAnyItem() {
-        homePage.clickOnItem();
+    @When("user click on item {string}")
+    public void userClickOnAnyItem(String itemName) {
+        homePage.clickOnItem(itemName);
     }
 }
