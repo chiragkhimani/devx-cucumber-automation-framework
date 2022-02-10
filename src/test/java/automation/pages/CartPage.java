@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class CartPage extends BasePage{
 
-    @FindBy(id="remove-sauce-labs-backpack")
+    @FindBy(xpath = "//*[contains(@id, 'remove')]")
     WebElement removeBtn;
 
     @FindBy(id="checkout")

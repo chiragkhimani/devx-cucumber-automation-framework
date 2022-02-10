@@ -17,4 +17,9 @@ public class HomeSteps {
     public void userClickOnAnyItem(String itemName) {
         homePage.clickOnItem(itemName);
     }
+
+    @When("user click on add to cart button for item {string}")
+    public void user_click_on_add_to_cart_button_for_item(String itemName) {
+        homePage.clickonAddToCartForSpecificItem(itemName);
+    }
 }

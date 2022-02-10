@@ -20,6 +20,7 @@ public class HomePage extends BasePage{
     WebElement logoutLink;
 
     String XPATH_ITEM_LINK = "//div[text()='%s']";
+    String XPATH_ITEM_ADD_TO_CART_BTN ="//div[text()='%s']/ancestor::div[@class='inventory_item_description']//button";
 
     public void verifyPage(){
         Assert.assertTrue("Logo is missing from homepage", homePageLogo.isDisplayed());
@@ -42,4 +43,9 @@ public class HomePage extends BasePage{
     }
 
 
+    public void clickonAddToCartForSpecificItem(String itemName) {
+        String loc = String.format(XPATH_ITEM_ADD_TO_CART_BTN, itemName);
+        WebElement addToCartBtn = driver.findElement(By.xpath(loc));
+        addToCartBtn.click();
+    }
 }
