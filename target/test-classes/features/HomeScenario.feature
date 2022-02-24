@@ -1,4 +1,5 @@
 Feature: This feature file to test end to end flow of the website
+
   @Smoke
   Scenario: Verify User Can Place Order
     Given user open website

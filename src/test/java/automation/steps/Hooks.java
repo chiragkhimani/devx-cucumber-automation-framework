@@ -10,15 +10,12 @@ import io.cucumber.java.Scenario;
 
 public class Hooks {
 
-    @Before("@db")
-    public void setUpDB(){
-        DatabaseUtils.createDBConnection();
-    }
 
     @Before
     public void setUp(){
 
         PropertyReader.initProperties();
+        DatabaseUtils.createDBConnection();
 
         if(PropertyReader.getProperty("platform").equals("local")){
             DriverUtils.createDriver();
@@ -31,13 +28,9 @@ public class Hooks {
         }
     }
 
-    @After("@db")
-    public void cleanUp(){
-        DatabaseUtils.closeDBConnection();
-    }
-
     @After
     public void cleanUp(Scenario sc){
+        DatabaseUtils.closeDBConnection();
         byte[] data = CommonMethods.takeScreenshot();
         sc.attach(data, "image/png", "My screenshot");
         DriverUtils.getDriver().quit();

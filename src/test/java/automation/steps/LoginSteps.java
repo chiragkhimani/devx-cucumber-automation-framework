@@ -19,5 +19,21 @@ public class LoginSteps {
         loginPage.doLogin();
     }
 
+    @Given("user open digital bank website")
+    public void user_open_digital_bank_website() {
+        loginPage.openDigitalBankWebsite();
+    }
+
+    @When("user click on sign up button")
+    public void user_click_on_sign_up_button() {
+        loginPage.clickOnSignUpBtn();
+    }
+
+    @Then("verify registration success message")
+    public void verify_registration_success_message() {
+        loginPage.verifyRegistrationSuccessMsg();
+    }
+
+
 
 }
