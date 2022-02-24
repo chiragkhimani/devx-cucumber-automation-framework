@@ -1,6 +1,7 @@
 package automation.steps;
 
 import automation.utils.CommonMethods;
+import automation.utils.DatabaseUtils;
 import automation.utils.DriverUtils;
 import automation.utils.PropertyReader;
 import io.cucumber.java.After;
@@ -9,8 +10,16 @@ import io.cucumber.java.Scenario;
 
 public class Hooks {
 
+    @Before("@db")
+    public void setUpDB(){
+        DatabaseUtils.createDBConnection();
+    }
+
     @Before
     public void setUp(){
+
+        PropertyReader.initProperties();
+
         if(PropertyReader.getProperty("platform").equals("local")){
             DriverUtils.createDriver();
         }else if(PropertyReader.getProperty("platform").equals("sauce")) {
@@ -20,6 +29,11 @@ public class Hooks {
         }else{
             throw new RuntimeException("Invalid platform");
         }
+    }
+
+    @After("@db")
+    public void cleanUp(){
+        DatabaseUtils.closeDBConnection();
     }
 
     @After
