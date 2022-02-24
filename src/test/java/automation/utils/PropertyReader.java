@@ -29,7 +29,6 @@ public class PropertyReader {
         while(rs.next()){
             System.out.println(rs.getString("todayDate"));
         }
-
         DatabaseUtils.closeDBConnection();
     }
 }
